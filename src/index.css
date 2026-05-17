@@ -1,0 +1,65 @@
+cat > src/index.css <<'EOF'
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.password-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.password-card h1 {
+  margin: 0 0 24px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.password-form {
+  display: grid;
+  gap: 12px;
+}
+
+.password-form label {
+  font-weight: bold;
+}
+
+.password-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.password-form input:focus {
+  outline: 2px solid #2563eb;
+  border-color: #2563eb;
+}
+
+.strength {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  background: #e5e7eb;
+}
+EOF
