@@ -33,4 +33,12 @@ describe('getPasswordStrength', () => {
   test('only symbols with less than 8 characters is still weak', () => {
     expect(getPasswordStrength('!!!')).toBe('débil')
   })
+
+  test('returns "fuerte" when password has mixed uppercase and lowercase letters', () => {
+    expect(getPasswordStrength('Abcdefgh')).toBe('fuerte')
+  })
+
+  test('returns "muy fuerte" when password has mixed case and a number', () => {
+    expect(getPasswordStrength('Abcdefg1')).toBe('muy fuerte')
+  })
 })

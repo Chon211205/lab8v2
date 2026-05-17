@@ -208,4 +208,26 @@ describe('PasswordStrengthMeter', () => {
     expect(progressBar).toHaveAttribute('aria-valuenow', '0')
     expect(screen.getByText('vacía')).toBeInTheDocument()
   })
+
+  test('shows "fuerte" when user types a password with mixed uppercase and lowercase letters', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'Abcdefgh')
+
+    expect(screen.getByText('fuerte')).toBeInTheDocument()
+  })
+
+  test('shows "muy fuerte" when user types a password with mixed case and a number', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'Abcdefg1')
+
+    expect(screen.getByText('muy fuerte')).toBeInTheDocument()
+  })
 })
