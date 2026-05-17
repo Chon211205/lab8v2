@@ -8,16 +8,19 @@ export default function PasswordStrengthMeter () {
 
   return (
     <section>
-      <label htmlFor="password">Contraseña</label>
+      <div className="password-form">
+        <label htmlFor="password">Contraseña</label>
 
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Escribe tu contraseña"
+        />
+      </div>
 
-      <p aria-live="polite">{strength}</p>
+      <p className="strength" aria-live="polite">{strength}</p>
     </section>
   )
 }

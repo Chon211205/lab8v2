@@ -1,4 +1,3 @@
-cat > src/index.css <<'EOF'
 * {
   box-sizing: border-box;
 }
@@ -62,4 +61,3 @@ main {
   font-weight: bold;
   background: #e5e7eb;
 }
-EOF
