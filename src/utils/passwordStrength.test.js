@@ -41,4 +41,16 @@ describe('getPasswordStrength', () => {
   test('returns "muy fuerte" when password has mixed case and a number', () => {
     expect(getPasswordStrength('Abcdefg1')).toBe('muy fuerte')
   })
+
+  test('counts spaces as characters', () => {
+    expect(getPasswordStrength('abc defg')).toBe('media')
+  })
+
+  test('treats spaces as symbols', () => {
+    expect(getPasswordStrength('abcdef1 ')).toBe('muy fuerte')
+  })
+
+  test('short password with spaces is still weak', () => {
+    expect(getPasswordStrength('a b')).toBe('débil')
+  })
 })

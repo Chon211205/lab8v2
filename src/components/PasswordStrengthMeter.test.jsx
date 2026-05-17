@@ -230,4 +230,26 @@ describe('PasswordStrengthMeter', () => {
 
     expect(screen.getByText('muy fuerte')).toBeInTheDocument()
   })
+
+  test('counts spaces as characters while typing', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abc defg')
+
+    expect(screen.getByText('media')).toBeInTheDocument()
+  })
+
+  test('treats spaces as symbols while typing', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abcdef1 ')
+
+    expect(screen.getByText('muy fuerte')).toBeInTheDocument()
+  })
 })
