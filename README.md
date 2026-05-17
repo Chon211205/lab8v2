@@ -4,37 +4,59 @@ Proyecto desarrollado con React, Vite, Vitest y React Testing Library aplicando 
 
 ## Instalación
 
-Para instalar las dependencias del proyecto:
+Para instalar las dependencias del proyecto, ejecuta:
 
 ```bash
 bun install
-Correr los tests
+```
 
-Para ejecutar los tests:
+## Correr los tests
 
+Para ejecutar los tests del proyecto, ejecuta:
+
+```bash
 bun run test
+```
 
-Para ejecutar los tests una sola vez:
+Para ejecutar los tests una sola vez, por ejemplo en CI, ejecuta:
 
+```bash
 bun run test -- --run
-Correr el proyecto en modo desarrollo
+```
 
-Para iniciar el servidor de desarrollo:
+## Correr el proyecto en modo desarrollo
 
+Para iniciar el servidor de desarrollo, ejecuta:
+
+```bash
 bun run dev
+```
 
-Luego abre en el navegador la URL que muestra Vite, normalmente:
+Luego abre en el navegador la URL que muestra Vite en la terminal.
 
+Normalmente será:
+
+```txt
 http://localhost:5173/
-Flujo TDD seguido
+```
 
-El desarrollo siguió el flujo Test Driven Development:
+## Flujo TDD seguido
 
-Primero se configuró el proyecto con Vite, Vitest, React Testing Library y jsdom.
-Luego se escribieron los tests basados en los requerimientos antes de implementar la funcionalidad.
-Se ejecutaron los tests y fallaron inicialmente.
-Se hizo un commit con los tests fallando.
-Después se implementó la lógica y el componente React.
-Finalmente se volvieron a ejecutar los tests hasta que todos pasaron.
+El proyecto fue desarrollado siguiendo el flujo Test Driven Development.
 
-El historial de commits muestra este flujo, con un commit de tests fallando antes del commit de implementación.
+Primero se configuró el proyecto con Vite, Vitest, React Testing Library y jsdom. Después se escribieron los tests basados en los requerimientos antes de implementar la funcionalidad.
+
+Luego se ejecutaron los tests para confirmar que fallaban inicialmente. Ese estado fue guardado en un commit para evidenciar la etapa roja del ciclo TDD.
+
+Después se implementó la lógica de fortaleza de contraseña y el componente React hasta que todos los tests pasaron. Finalmente, se realizaron ajustes visuales y mejoras manteniendo los tests en verde.
+
+El historial de commits evidencia este flujo, ya que contiene un commit con los tests fallando antes del commit de implementación.
+
+## Comandos principales
+
+```bash
+bun install
+bun run dev
+bun run test
+bun run test -- --run
+```
