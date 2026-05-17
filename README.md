@@ -1,16 +1,40 @@
-# React + Vite
+# Password Strength Meter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto desarrollado con React, Vite, Vitest y React Testing Library aplicando el flujo de trabajo Test Driven Development.
 
-Currently, two official plugins are available:
+## Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Para instalar las dependencias del proyecto:
 
-## React Compiler
+```bash
+bun install
+Correr los tests
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Para ejecutar los tests:
 
-## Expanding the ESLint configuration
+bun run test
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para ejecutar los tests una sola vez:
+
+bun run test -- --run
+Correr el proyecto en modo desarrollo
+
+Para iniciar el servidor de desarrollo:
+
+bun run dev
+
+Luego abre en el navegador la URL que muestra Vite, normalmente:
+
+http://localhost:5173/
+Flujo TDD seguido
+
+El desarrollo siguió el flujo Test Driven Development:
+
+Primero se configuró el proyecto con Vite, Vitest, React Testing Library y jsdom.
+Luego se escribieron los tests basados en los requerimientos antes de implementar la funcionalidad.
+Se ejecutaron los tests y fallaron inicialmente.
+Se hizo un commit con los tests fallando.
+Después se implementó la lógica y el componente React.
+Finalmente se volvieron a ejecutar los tests hasta que todos pasaron.
+
+El historial de commits muestra este flujo, con un commit de tests fallando antes del commit de implementación.
