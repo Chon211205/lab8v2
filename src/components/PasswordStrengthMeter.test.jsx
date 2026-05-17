@@ -4,20 +4,19 @@ import userEvent from '@testing-library/user-event'
 import PasswordStrengthMeter from './PasswordStrengthMeter'
 
 describe('PasswordStrengthMeter', () => {
-
-  test('the password input is accessible by its label', () => {
+  test('renders a password input', () => {
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     expect(input).toBeInTheDocument()
     expect(input).toHaveAttribute('type', 'password')
   })
 
-  test('renders a password input', () => {
+  test('the password input is accessible by its label', () => {
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     expect(input).toBeInTheDocument()
     expect(input).toHaveAttribute('type', 'password')
@@ -33,7 +32,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abc')
 
@@ -44,7 +43,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdefgh')
 
@@ -55,7 +54,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdefg1')
 
@@ -66,7 +65,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdef1!')
 
@@ -77,7 +76,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdef1!')
     await user.clear(input)
@@ -89,7 +88,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdefgh')
 
@@ -101,7 +100,7 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, 'abcdefg')
 
@@ -113,10 +112,100 @@ describe('PasswordStrengthMeter', () => {
     const user = userEvent.setup()
     render(<PasswordStrengthMeter />)
 
-    const input = screen.getByLabelText(/contraseña/i)
+    const input = screen.getByLabelText(/^contraseña$/i)
 
     await user.type(input, '!!!')
 
     expect(screen.getByText('débil')).toBeInTheDocument()
+  })
+
+  test('renders a progress bar for the password strength', () => {
+    render(<PasswordStrengthMeter />)
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toBeInTheDocument()
+    expect(progressBar).toHaveAttribute('aria-valuemin', '0')
+    expect(progressBar).toHaveAttribute('aria-valuemax', '100')
+    expect(progressBar).toHaveAttribute('aria-valuenow', '0')
+  })
+
+  test('progress bar shows 25 when password is weak', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abc')
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toHaveAttribute('aria-valuenow', '25')
+  })
+
+  test('progress bar shows 50 when password is medium', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abcdefgh')
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toHaveAttribute('aria-valuenow', '50')
+  })
+
+  test('progress bar shows 75 when password is strong', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abcdefg1')
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toHaveAttribute('aria-valuenow', '75')
+  })
+
+  test('progress bar shows 100 when password is very strong', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abcdef1!')
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toHaveAttribute('aria-valuenow', '100')
+  })
+
+  test('progress bar returns to 0 when password is cleared', async () => {
+    const user = userEvent.setup()
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/^contraseña$/i)
+
+    await user.type(input, 'abcdef1!')
+    await user.clear(input)
+
+    const progressBar = screen.getByRole('progressbar', {
+      name: /fortaleza de contraseña/i
+    })
+
+    expect(progressBar).toHaveAttribute('aria-valuenow', '0')
+    expect(screen.getByText('vacía')).toBeInTheDocument()
   })
 })

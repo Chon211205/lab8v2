@@ -1,4 +1,3 @@
-cat > src/App.jsx <<'EOF'
 import PasswordStrengthMeter from './components/PasswordStrengthMeter'
 
 export default function App () {
@@ -11,4 +10,3 @@ export default function App () {
     </main>
   )
 }
-EOF
