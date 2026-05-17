@@ -4,6 +4,16 @@ import userEvent from '@testing-library/user-event'
 import PasswordStrengthMeter from './PasswordStrengthMeter'
 
 describe('PasswordStrengthMeter', () => {
+
+  test('the password input is accessible by its label', () => {
+    render(<PasswordStrengthMeter />)
+
+    const input = screen.getByLabelText(/contraseña/i)
+
+    expect(input).toBeInTheDocument()
+    expect(input).toHaveAttribute('type', 'password')
+  })
+
   test('renders a password input', () => {
     render(<PasswordStrengthMeter />)
 
