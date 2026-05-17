@@ -60,3 +60,9 @@ bun run dev
 bun run test
 bun run test -- --run
 ```
+## Puntos extra implementado:
+- (5 puntos) Agregar un test que verifique que el input es accesible utilizando queries por rol o label.
+- (5 puntos) Mostrar visualmente la fortaleza con una barra de progreso además del texto, con sus tests correspondientes.
+- (5 puntos) Agregar una regla adicional de fortaleza que considere mayúsculas y minúsculas mezcladas, con sus tests correspondientes.
+- (5 puntos) Configurar coverage con Vitest e incluir un script para generar el reporte.
+- (5 puntos) Configurar un script de lint y aplicarlo al proyecto.
